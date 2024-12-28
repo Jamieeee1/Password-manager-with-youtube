@@ -1,5 +1,5 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    background-color: white;
+    background: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -29,14 +29,14 @@ h1 {
 
 input {
     padding: 10x;
-    font-size: 1.3rem;
+    font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
 button {
     padding: 10px;
-    font-size: 15px;
+    font-size: 16px;
     background-color: #28a745;
     color: white;
     border: none;
@@ -49,12 +49,12 @@ button:hover {
 }
 
 .password-list ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
 .password-list li {
-    background-color: #f9f9f9;
+    background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px;
@@ -79,7 +79,7 @@ button:hover {
     color: #0056b3;
 }
 
-/* Style for password visibility toggle toggle */
+/* Style for password visibility toggle */
 
 .show-password {
     cursor: pointer;
@@ -92,7 +92,6 @@ button:hover {
 }
 
 /* Style for custom popup */
-
 .popup {
     position: fixed;
     top: 0;
@@ -106,10 +105,10 @@ button:hover {
 }
 
 .popup-content {
-    background-color: white;
+    background: white;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
