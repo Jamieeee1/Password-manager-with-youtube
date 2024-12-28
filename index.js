@@ -1,11 +1,11 @@
 //Function to save password to local storage
-function savePassword(passwords) {
+function savePasswords(passwords) {
   localStorage.setItem('passwords', JSON.stringify(passwords));
 }
 
 // Function to get passwords from local storage
 function getPasswords() {
-    return JSON.parse(localStorage.getItem('passwords') || '[]');
+    return JSON.parse(localStorage.getItem('passwords')) || [];
 }
 
 // Function to render passwords
@@ -14,29 +14,29 @@ function renderPasswords() {
     const passwords = getPasswords();
     passwordList.innerHTML = '';
 
-    passwordList.forEach((item, index) => {
+    passwords.forEach((item, index) => {
       const listItem = document.createElement('li');
-
 
       //create a span for a website and password
       const passwordSpan = document.createElement('span');
-      passwordSpan.innerHTML = `<strong>${item.website}</strong>: 
+      passwordSpan.innerHTML = `
+      <strong>${item.website}</strong>: 
       <span class="passwpord" id ="password-${index}"> ${'*'.repeat(item.password.length)}</span>
       <i class="fas fa-eye show-password" onclick="togglePassword(${index})" title = "Show/HidePassword"></i>`;
 
       //create a div for action buttons
-      const actionDiv = document.createElement('div');
-      actionDiv.classList.add('actions');
-      actionDiv.innerHTML = `
-      <i class = "fas fa-copy" onclick="copyPassword(${index}) title = "copy"></i>
-      <i class = "fas fa-edit" onclick="promptEditPassword(${index}) title = "Edit"></i>
-      <i class = "fas fa-trash-alt" onclick="confirmDelete(${index}) title = "Delete"></i>
+      const actionsDiv = document.createElement('div');
+      actionsDiv.classList.add('actions');
+      actionsDiv.innerHTML = `
+      <i class = "fas fa-copy" onclick="copyPassword(${index})" title = "Copy"></i>
+      <i class = "fas fa-edit" onclick="promptEditPassword(${index})" title = "Edit"></i>
+      <i class = "fas fa-trash-alt" onclick="confirmDelete(${index})" title = "Delete"></i>
       `;
 
       //Append elements to the list item
 
       listItem.appendChild(passwordSpan);
-      listItem.appendChild(actionDiv);
+      listItem.appendChild(actionsDiv);
       passwordList.appendChild(listItem);
     
     })
@@ -55,10 +55,9 @@ document.getElementById('add-btn').addEventListener('click', () => {
     document.getElementById('website').value = '';
     document.getElementById('password').value = '';
   } else {
-    showPopup('Please enter a website and password');
+    showPopup('Please fill in both fields.');
   }
 });
-
 
 //Function to copy password
 
@@ -86,7 +85,7 @@ function showPopup (message, hasCancel = false, isEditing = false, index=null ) 
 
   popup.classList.remove('hidden');
 
-  return new Promise ((resolve) => {
+  return new Promise((resolve) => {
     document.getElementById('popup-ok').onclick = () => {
       if (isEditing && index !== null) {
         const newPassword = popupInput.value;
@@ -118,7 +117,7 @@ function showPopup (message, hasCancel = false, isEditing = false, index=null ) 
 //function to confirm deletion with custom popup
 
 async function confirmDelete(index) {
-  const confirm = await showPopup('Are you sure you want to delete this password?', true);
+  const confirmed = await showPopup('Are you sure you want to delete this password?', true);
   if (confirmed) {
     deletePassword(index); 
   }
