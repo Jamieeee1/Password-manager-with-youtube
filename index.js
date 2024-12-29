@@ -49,7 +49,7 @@ document.getElementById('add-btn').addEventListener('click', () => {
 
   if (website && password) {
     const passwords = getPasswords();
-    passwords.push({website, password});
+    passwords.push({ website, password});
     savePasswords(passwords);
     renderPasswords();
     document.getElementById('website').value = '';
